@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <!--公共样式-->
+    <link rel="stylesheet" href="css/reset.css" />
+    <!--主要样式-->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/publicClass.css">
+    <link rel="stylesheet" type="text/css" href="css/simpleCalendar.css">
+    <link rel="stylesheet" href="css/trainingCourse.css">
+    <title>课表查询</title>
+</head>
+
+<body>
+<div class="inner">
+    <div id='calendar' class="sc-calendar">
+        <div class="sc-header">
+            <div class="sc-title">
+                <div class="year"><span class="sc-select-year" name=""></span>年</div>
+                <div class="month">
+                    <!--<div class="arrow sc-mleft"></div>-->
+                    <div class="monthdiv">
+                        <span class="sc-select-month" name=""></span>
+                    </div>
+                    <!--<div class="arrow sc-mright"></div>-->
+                </div>
+            </div>
+            <div class="sc-week"></div>
+        </div>
+        <div class="sc-body">
+            <div class="sc-days"></div>
+        </div>
+        <div class="toggle-date">
+            <div class="toggle-date-icon"><img src="images/date/toggle-icon1.png"></div>
+        </div>
+    </div>
+    <div class="planning-title">
+        <div class="today-planning-title">
+            <p>今日培训计划</p>
+        </div>
+        <div class="checkBoxButton">
+            <p>已完成的不再显示</p>
+            <input type="checkbox" id="s3" />
+            <label class="slider-v2" for="s3"></label>
+        </div>
+    </div>
+    <div class="announcement">
+        <ul class="matter data-list">
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="mescroll-upwarp">
+        <p class="upwarp-progress"></p>
+        <p class="upwarp-tip">加载中..</p>
+    </div>
+</div>
+<div style="min-height: 50px;"></div>
+<div class="bottom-icon">
+    <a href="index.html"><img src="images/icon1.png">商学院</a>
+    <a href="trainingCourse.html"><img src="images/icon2-h.png">培训课程</a>
+    <a href="personalCenter.html"><img src="images/icon3.png">我的</a>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
+<script type="text/javascript" src="js/simple-calendar.js"></script>
+<script type="text/javascript" src="js/hammer-2.0.8-min.js"></script>
+<script type="text/javascript">
+    var myCalendar = new SimpleCalendar('#calendar');
+    $(function(){
+        //折叠
+        var itemHeight=$(".sc-item").height();
+        var bodyHeight2=$('.sc-body').height();
+        $('.sc-body').height(itemHeight);
+        $(".toggle-date").click(function () {
+            var bodyHeight=$('.sc-body').height();
+            if(bodyHeight!=itemHeight){
+                $(".sc-body").animate({height:itemHeight});
+                $(".toggle-date-icon img").attr("src","images/date/toggle-icon1.png")
+            }else{
+                $(".sc-body").animate({height:bodyHeight2});
+                $(".toggle-date-icon img").attr("src","images/date/toggle-icon.png")
+            }
+        });
+// --------------------------------------------------------------------------------------
+
+        //var monthCH = $('.sc-select-month').text();
+        $(".sc-mleft").click(function(){
+            myCalendar.subMonth();
+            // var year = $('.sc-select-year').text();
+            // var monthCH = $('.sc-select-month').text();
+            // var month = SimpleCalendar.prototype.languageData.months_CH.indexOf(monthCH)+1;
+        })
+        $(".sc-mright").click(function(){
+            myCalendar.addMonth();
+            // var year = $('.sc-select-year').text();
+            // var monthCH = $('.sc-select-month').text();
+            // var month = SimpleCalendar.prototype.languageData.months_CH.indexOf(monthCH)+1;
+        })
+
+
+    });
+    // --------------------------------------------------------------------------------------
+    //滑动切换
+    var myElement = document.getElementById('calendar');
+    var hammer = new Hammer(myElement);
+    hammer.on("swipeleft", function (ev) {
+        myCalendar.addMonth();       
+        announceList($('.sc-today'));
+        if($('.sc-days').find('.sc-today').size()==0){
+            $('.sc-body').find('.sc-month').eq(0).addClass('sc-active-day sc-selected');
+            announceList($('.sc-selected'))
+        }
+        
+    });
+    hammer.on("swiperight", function (ev) {
+       myCalendar.subMonth();
+        //$('.sc-body').find('.sc-month').eq(0).addClass('sc-active-day sc-selected')
+        announceList($('.sc-today'));
+        if ($('.sc-days').find('.sc-today').size() == 0) {
+            $('.sc-body').find('.sc-month').eq(0).addClass('sc-active-day sc-selected');
+            announceList($('.sc-selected'))
+        }
+    });
+
+
+    // --------------------------------------------------------------------------------------
+    //添加标记
+    var mark = {
+        '2019-1-7':[],
+        '2019-1-8':[],
+        '2019-1-9':[]
+    };
+    myCalendar._defaultOptions.mark=mark;
+    myCalendar.update();
+
+
+
+    //显示当天的活动在初始化mark之后
+    //初始化今天的活动
+    //alert($('.sc-today'))
+    announceList($('.sc-today'));
+    //有标记的日期点击事件
+    $('#calendar').on("click", '.sc-selected', function() {
+        announceList($(this));
+        $(this).addClass('sc-active-day sc-selected').siblings('.sc-month').removeClass('sc-active-day sc-selected')
+    });
+
+    //显示选择日期当天的活动
+    function announceList(v){
+        console.log(v)
+        if(v.children().hasClass('sc-mark-show')){
+            var year = $('.sc-select-year').text();
+            var monthCH = $('.sc-select-month').text();   //中文 变成123456
+            var num=0;
+            switch(monthCH){
+                case "正月":
+                   num=1;
+                break;
+                case "二月":
+                    num = 2;
+                    break;
+                case "三月":
+                    num = 3;
+                    break;
+                case "四月":
+                    num = 4;
+                    break;
+                case "五月":
+                    num = 5;
+                    break;
+                case "六月":
+                    num = 6;
+                    break;
+                case "七月":
+                    num = 7;
+                    break;
+                case "八月":
+                    num = 8;
+                    break;
+                case "九月":
+                    num = 9;
+                    break;
+                    case "十月":
+                    num = 10;
+                    break;
+                case "十一月":
+                    num = 11;
+                    break;
+                case "十二月":
+                    num = 12;
+                    break;
+                 default:
+                     num = 1
+            }
+       
+
+            var day = v.children()[1].innerText;
+           // var month = SimpleCalendar.prototype.languageData.months_CH.indexOf(monthCH) + 1;
+            var month = SimpleCalendar.prototype.languageData.months_CH.indexOf(monthCH+1);
+            // SimpleCalendar.prototype.languageData.months_CH[i]
+    
+            //var date = year + '-' + month + '-' + day;
+            var date = year + '-' + num + '-' + day;
+           // alert(date)
+            
+            //alert(date)
+            var content = mark[date];
+            //alert(content)
+            var matterHtml='';
+            setTimeout(function () {
+                $.ajax({
+                    url: "pdlist1.json",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        for(var i=0;i<data.length;i++){
+                            var pd = data[i];
+                            // console.log(pd.pdName);
+                            // matterHtml +='<li class="announceItem"><div><div class="fl announceImg">'
+                            //     +'<img class=" " src="images/date/content.png"/></div>'
+                            //     +'<p class="announceContent">'+pd.pdName+'</p>'
+                            //     +'</div><div class="announceTime">'+pd.startDate+'</div></li>';
+
+                            matterHtml += '<li><div class="clearfix"><div class="fl course-item-l"><div class="num-wrap"><!--<img src="images/circle-type.png">--><div class="num"><i>' + pd.num + '</i>/<span>' + pd.total + '</span></div></div><div class="img-line-gray"></div><div class="img-line-blue"></div><img class="course-img" src="images/noLoading.png" imgurl="' + pd.pdImg + '"/></div>'
+                            + '<div class="fl course-item-r"><p>' + pd.pdName + '</p>'
+                            + '<div class="course-date clearfix">'
+                            + '<div class="course-date-detail clearfix"><div class="fl course-date-detail-l">'
+                            + '<div class="course-date-detail-t clearfix"><span class="fl">' + pd.startDate + '</span><i class="fl">' + pd.startTime + '</i><b class="fl">开始</b></div>'
+                            + '<div class="course-date-detail-b clearfix"><span class="fl">' + pd.endDate + '</span><i class="fl">' + pd.endTime + '</i><b class="fl">截止</b></div></div>'
+                            + '<a class="fr no-start-btn"><div class="study-status">' + pd.pdStatus + '</div><div class="prompt">还未到学习计划时间哦～</div></a>'
+                            + '</div></div></div></li>'
+                        }
+                        $('.matter').html(matterHtml);
+                        $.each($(".course-item-l"),function(i,thisa){
+                            var w=$(thisa).width();
+                            var b=$(thisa).find("i").html();
+                            var s=$(thisa).find("span").html();
+                            var W=w/s*b;
+                            $(thisa).find(".img-line-blue").css("width",W+'px');
+                        });
+                        $.each($(".data-list li"), function (i, thisb) {
+                            var b = $(thisb).find("i").html();
+                            var s = $(thisb).find("span").html();
+                            if(b==s){
+                                $(thisb).find(".study-status").addClass("yellow-color").html("已完成");
+                            }if(b!=s&&b!=0){
+                                $(thisb).find(".study-status").addClass("red-color").html("学习中");
+                            }
+                        });
+                        $(".no-start-btn").click(function () {
+                            if($(this).children('.study-status').html()=="未开始"){
+                                $(this).attr('href','javascript:;');
+                                $(this).children('.prompt').show();
+                                setTimeout(function(){
+                                    $(".no-start-btn").children('.prompt').fadeOut();
+                                }, 1000);
+                            }
+
+                        });
+                        $(".mescroll-upwarp").show();
+                    }
+                });
+            }, 500)
+
+            // for(var i=0;i<content.length;i++){
+            //     matterHtml +='<li class="announceItem"><div><div class="fl announceImg">'
+            //         +'<img class=" " src="images/date/content.png"/></div>'
+            //         +'<p class="announceContent">'+content[i].title+'</p>'
+            //         +'</div><div class="announceTime">'+content[i].startTime+' - '+content[i].endTime+'</div></li>';
+            // }
+
+
+        }else{
+            var matterHtml=''
+            matterHtml +='<li class="announceItem"><div><img src="images/no-course-img.png"><p class="announceContent">什么都米有呢～～</p><p>今天暂无发布的任何培训计划～</p></div></li>';
+            $('.matter').html(matterHtml);
+            $(".mescroll-upwarp").hide();
+        }
+    }
+
+    // $.ajax({
+    //     url: "pdlist1.json",
+    //     type: "GET",
+    //     dataType: "json",
+    //     success: function (data) {
+    //         console.log(data.length)
+    //     }
+    // })
+
+
+</script>
+
+</body>
+
+</html>

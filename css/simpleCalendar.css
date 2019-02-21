@@ -1,0 +1,257 @@
+body{
+	font-size: 12px;
+	background: #efeff4;
+}
+.sc-calendar {
+	width: 100%;
+	text-align: center;
+	font-family: "Microsoft Yahei";
+	color: #4A4A4A;
+	font-size: 10px;
+
+}
+.sc-body{
+	background: -webkit-linear-gradient(left, #1a97ec , #1ac1ec); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(right, #1a97ec, #1ac1ec); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(right, #1a97ec, #1ac1ec); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to right, #1a97ec , #1ac1ec); /* 标准的语法（必须放在最后） */
+}
+.sc-body.showmonth5{
+	overflow: hidden;
+}
+.sc-body.showmonth6{
+	height: 6.92rem;
+}
+
+.toggle-date{
+	height: 0.4rem;
+	background: -webkit-linear-gradient(left, #1a97ec , #1ac1ec); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(right, #1a97ec, #1ac1ec); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(right, #1a97ec, #1ac1ec); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to right, #1a97ec , #1ac1ec); /* 标准的语法（必须放在最后） */
+}
+.toggle-date-icon{width: 15%;border: 1px solid #afe2f9;border-bottom: none;margin: 0 auto;height: 0.4rem;background: #5fc4f2;border-radius: 3px 3px 0 0;}
+.toggle-date-icon img{width: 45%;margin: 0.1rem auto 0;}
+/*add*/
+.sc-item－height{height: 0.18rem;!important;background: red;}
+
+.sc-header {
+	width: 100%;
+	height: 1.55rem;
+	background: -webkit-linear-gradient(left, #1a97ec , #1ac1ec); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(right, #1a97ec, #1ac1ec); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(right, #1a97ec, #1ac1ec); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to right, #1a97ec , #1ac1ec); /* 标准的语法（必须放在最后） */
+}
+
+.sc-title {
+	height: 1rem;
+	border-bottom: 0;
+	color: white;
+	padding: 0.3rem 0.4rem;
+}
+.year {
+	float: left;
+	margin-left: 39.5%;
+	position: relative;
+	font-size: 16px;
+}
+.sc-actions{/*width: 20%;margin: 0 auto;*/}
+.sc-return-today{font-size: 16px;text-align: center;float: right;}
+
+
+.month {
+	float: left;
+	position: relative;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+.monthdiv {
+	position: relative;
+	display: inline-block;
+}
+
+.month .arrow {
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+}
+
+.sc-mleft {
+	background: url(../images/date/arrowLeftCircle.png) center top no-repeat;
+	background-size: 100% 100%;
+	width: 0.4rem;
+	height: 0.4rem;
+}
+
+.sc-mright {
+	background: url(../images/date/arrowRightCircle.png) center top no-repeat;
+	background-size: 100% 100%;
+	width: 0.4rem;
+	height: 0.4rem;
+}
+
+.year span {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	font-family: "Microsoft Yahei";
+	color: white;
+}
+
+
+.sc-body {
+	height: 5.7rem;
+	clear: both;
+}
+
+/*星期*/
+.sc-week {
+	height: 0.55rem;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 0.55rem;
+	color: #4A4A4A;
+}
+
+.sc-week-item {
+	height: 100%;
+	float: left;
+	width: 14.285%;
+	color: white;
+	box-sizing: border-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/*日*/
+.sc-days {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.sc-item {
+	width: 13.5%;
+	height: 1.1rem;
+	float: left;
+	color: #565555;
+	box-sizing: border-box;
+	margin: 0.39%;
+	
+}
+
+.sc-item .day {
+	font-size: 18px;
+	color: #fff;
+	font-weight: normal;
+	line-height: 0.45rem;
+}
+.sc-item .lunar-day {
+	font-size: 13px;
+	line-height: 0.26rem;
+	color: #fff;
+	opacity: 0.8;
+	font-weight: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.sc-item-small {
+	font-size: 0.416666rem !important;
+}
+.item-nolunar {
+	padding-top: 0.833333rem;
+}
+
+.sc-vocation {
+	background-color: #FFEBEC;
+}
+
+.sc-mark {
+	background-color: #E5FBFA;
+}
+.mark{
+	/*background: url(../img/blueBg.png) center center no-repeat;
+	background-size: 0.88rem 0.88rem;*/
+	height: 0.16rem;
+	font-size: 14px;
+	color: #017fb2;
+	opacity: 0;
+}
+.sc-mark-show {
+	visibility: visible;
+}
+
+.sc-mark-hide {
+	visibility: hidden;
+}
+
+.sc-vocation:before {
+	content: '休';
+	display: block;
+	position: absolute;
+	font-size: 0.7em;
+	width: 1.2em;
+	font-weight: 100;
+	color: white;
+	background-color: #E00808;
+	margin-top: -0.416666rem;
+}
+.sc-premonth , .sc-nextmonth {
+	color: #fff !important;
+	opacity: 0.9;
+}
+
+.sc-premonth .day , .sc-nextmonth .day,
+.sc-premonth .day, .sc-nextmonth .lunar-day {
+	color: #fff !important;
+	opacity: 0.9;
+}
+
+.sc-active-day{
+	background: url(../images/date/blueBg.png) center center no-repeat;
+	background-size: 0.88rem 0.88rem;
+}
+.sc-selected{
+	background: url(../images/date/blueBg.png) center center no-repeat;
+	background-size: 0.88rem 0.88rem;
+}
+.sc-today {
+	background: url(../images/date/blueBg.png) center center no-repeat;
+	background-size: 0.88rem 0.88rem;
+	color: #00fffc;
+}
+
+.sc-today .day {
+	color: #00fffc !important;
+}
+.sc-today .lunar-day{
+	color: white;
+}
+.sc-festival .lunar-day {
+	color: #E00808;
+}
+
+.btnBox{
+	width: 100%;
+	padding: 0.5rem 0.4rem;
+	background: white;
+}
+.returnBtn{
+	display: block;
+	width: 100%;
+	height: 0.8rem;
+	text-align: center;
+	background: #4e9fee;
+	color: white;
+	font-size: 15px;
+	line-height: 0.8rem;
+	border-radius: 0.08rem;
+}
+
+
+@media screen and (max-width: 320px) {
+	.sc-item .day{font-size: 16px;}
+	.sc-item .lunar-day{font-size: 12px;}
+}
+

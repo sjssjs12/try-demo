@@ -1,0 +1,120 @@
+body{background: #f5f5f5;}
+/*模拟的标题*/
+.header{
+    z-index: 9990;
+    position: fixed;
+    top: 44px;
+    left: 0;
+    width: 100%;
+    line-height: 16px;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+.header .btn-left{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding:12px;
+}
+.header .btn-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding:12px 8px;
+}
+.header .tip{
+    margin-top: 4px;
+    font-size: 12px;
+    color: gray;
+}
+/*菜单*/
+.header .nav{
+    width: 88%;
+    margin: 16px auto;
+}
+.header .nav p{
+    border: 1px solid #1a97ec;
+    line-height: 32px;
+    width: 49.5%;
+    font-size: 16px;
+    color: #1a9cec;
+}
+.header .nav p:first-child{
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+.header .nav p:last-child{
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+}
+.header .nav .active{
+    color: #fff;
+    background: -webkit-linear-gradient(left, #1a97ec , #1ac2ec);
+    background: -o-linear-gradient(right, #1a97ec, #1ac2ec);
+    background: -moz-linear-gradient(right, #1a97ec, #1ac2ec);
+    background: linear-gradient(to right, #1a97ec , #1ac2ec);
+}
+/*列表*/
+.mescroll{
+    background: #fff;
+    position: fixed;
+    top: 110px;
+    bottom: 0;
+    height: auto;
+}
+/*展示上拉加载的数据列表*/
+.data-list {
+    width: 92%;
+    margin: 0 auto;
+}
+.data-list li{
+    padding: 16px 0;
+    position: relative;
+    border-bottom: 1px solid #eee;
+}
+.mescroll-empty .empty-icon {
+    margin: 80px auto 0;
+    width: 80%;
+}
+.data-list li:last-child{
+    border-bottom: none;
+}
+.data-list .pd-img{
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    width: 80px;
+    height: 80px;
+}
+.data-list .pd-name{
+    font-size: 16px;
+    line-height: 20px;
+    height: 40px;
+    overflow: hidden;
+}
+.data-list .pd-price{
+    margin-top: 8px;
+    color: red;
+}
+.data-list .pd-sold{
+    font-size: 12px;
+    margin-top: 8px;
+    color: gray;
+}
+.prompt{display: none;position: absolute;z-index: 66;width: auto;bottom: -15%;right: 0;line-height: 26px;background: #eaf5fc url("../images/promt-icon.png") 0.1rem center no-repeat;background-size: 1rem;border: 1px solid #1a9cec;border-radius: 5px;color: #1a9cec;font-size: 12px;padding: 0 0 0 1.2rem;}
+/*隐藏*/
+.hide{display: none;}
+.mescroll-upwarp{background: #f5f5f5;}
+
+.course-item-l{width: 34%;}
+.course-item-r{width: 62%;margin-left: 4%}
+.course-item-r p{font-size: 16px;color: #333;line-height: 20px;height: 40px;overflow: hidden;text-align: left;}
+.course-item-r .course-detail{margin-top: 6px;}
+
+@media screen and (max-width: 320px) {
+    .course-item-r p {font-size: 14px;}
+    .data-list li{padding: 10px 0 5px;}
+    .course-item-r .course-detail{margin-top: 0;font-size: 12px;}
+    .course-item-r .course-detail span{background: url(../images/clock.png) left 6px no-repeat;background-size: 11px;}
+    .prompt{bottom: -30%;}
+}

@@ -1,0 +1,58 @@
+body{background: #f5f5f5;}
+
+
+.nav-border{border-bottom: 1px solid #dedede;position: fixed;height: 89px;width: 100%;z-index: 55;background: #fff;}
+.wrapper02 {position: fixed;height: 45px;overflow: hidden;background: #fff;width: 92%;margin: 44px 4% 0;}
+.wrapper02 .scroller {position: absolute;}
+.wrapper02 .scroller li {color: #333;float: left;font-size: 16px;text-align: center;}
+.wrapper02 .scroller li a {line-height: 45px;color: #333;display: block;margin: 0 25px 0 0;}
+.wrapper02 .scroller li.cur {}
+.wrapper02 .scroller li.cur a {color: #1a9cec;}
+
+.mescroll {position: fixed;top: 152px;bottom: 0;height: auto;}
+.data-list {}
+.course-detail {
+    line-height: 24px;
+    font-size: 14px;
+    color: #1a9cec;
+}
+.course-detail i {
+    color: #aaaaaa;
+    display: block;
+}
+.course-detail span {
+    background: url(../images/clock.png) left 5px no-repeat;
+    padding-left: 16px;
+    background-size: 12px;
+    display: block;
+}
+.course-detail a{padding-right: 20px;background: url("../images/icon-more2.png") right center no-repeat;color: #999;background-size: 8px;margin-left: 10px;}
+.course-detail a.red-color{color: #fb5022;}
+.course-detail a.yellow-color{color: #ec961a;}
+
+
+.icon-circle{position: fixed;top: 90px;bottom: 0;height: 54px;width: 100%;z-index: 56;}
+.icon-circle p{line-height: 54px;text-align: center;font-size: 18px;color: #333333;background: #fff;}
+.icon-circle-img{width: 20%;position: absolute;right: 4%;top:5px;}
+
+/*控制完成css*/
+.tips{line-height: 36px;height: 36px;position: fixed;top: 145px;bottom: 0;width: 100%;z-index: 55;background: #f5f5f5;font-size: 12px;color: #999;display: block;}
+.tips p{margin-left: 4%;background: url("../images/icon-tips.png") left center no-repeat;background-size: 16px;padding-left: 22px; }
+.mescroll {top: 181px;}
+
+@media screen and (max-width: 375px) {
+    .course-detail a{
+        padding-right: 10px;
+        background-size: 6px;
+        margin-left: 8px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .course-item-r {width: 64%;margin-left: 2%;}
+    .course-item-r p {font-size: 14px;}
+    .data-list li{padding: 10px 0 5px;}
+    .course-item-r .course-detail{margin-top: 0;font-size: 12px;}
+    .course-item-r .course-detail span{background: url(../images/clock.png) left 6px no-repeat;background-size: 11px;}
+}
+
